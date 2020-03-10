@@ -24,13 +24,19 @@ class Board(chess.Board):
         self.initPosition()
 
     def printBoard(self):
+        print(" a b c d e f g h", end='\n')
+        row = 1
         count = 0
         for tile in range (64):
             print('|', end=self.gameTiles[tile].occupiedBy.symbol())
             count += 1
             if count == 8:
-                print('|', end='\n')
+                print('|'+str(row), end='\n')
+                row += 1
                 count = 0
+
+
+
 
     def initPosition(self):
         self.gameTiles[0].getOccupied(Rook(False,0))

@@ -12,7 +12,7 @@ class NullPiece(chess.Piece):
         self.color = color
         self.position = position
     def symbol(self):
-        return "."
+        return " "
 
 class Bishop(chess.Piece):
     piece_type = chess.BISHOP
