@@ -21,6 +21,18 @@ class Board(chess.Board):
             empty = NullPiece(False, tile)
             self.gameTiles[tile] = Tile(tile)
             self.gameTiles[tile].getOccupied(empty)
+        self.initPosition()
+
+    def printBoard(self):
+        count = 0
+        for tile in range (64):
+            print('|', end=self.gameTiles[tile].occupiedBy.symbol())
+            count += 1
+            if count == 8:
+                print('|', end='\n')
+                count = 0
+
+    def initPosition(self):
         self.gameTiles[0].getOccupied(Rook(False,0))
         self.gameTiles[1].getOccupied(Knight(False,1))
         self.gameTiles[2].getOccupied(Bishop(False,2))
@@ -55,30 +67,31 @@ class Board(chess.Board):
         self.gameTiles[62].getOccupied(Knight(True,62))
         self.gameTiles[63].getOccupied(Rook(True,63))
 
+    def makeMove(self, move):
+        validMove = True
+        from_tile = move.from_tile
+        to_tile = move.to_tile
 
-
-    def printBoard(self):
-        count = 0
-        for tile in range (64):
-            print('|', end=self.gameTiles[tile].occupiedBy.symbol())
-            count += 1
-            if count == 8:
-                print('|', end='\n')
-                count = 0
+        if validMove:
+            currentPiece = self.gameTiles[from_tile].occupiedBy
+            self.gameTiles[to_tile].getOccupied(currentPiece)
+            self.gameTiles[from_tile].getOccupied(NullPiece(True,1))
 
 
 
 
 ###### help classes ######
-class Move(chess.Move):
-    from_square = None
-    to_square = None
-    promotion = None
-    drop = None
+class Move():
+    from_tile = None
+    to_tile= None
 
-    def __init__(self, from_square, to_square, promotion, drop):
-        super()
 
+    def __init__(self, from_tile, to_tile):
+        self.from_tile = from_tile
+        self.to_tile = to_tile
+
+    def isValid():
+        pass
     #uci()->str
     #from_uci(uci: str)->chess.Move
     #null()->chess.Move

@@ -8,12 +8,10 @@ obj1 = Tile(63)
 
 newboard = Board()
 newboard.createBoard()
+newboard.printBoard()
 
-
-print(obj.symbol())
-print(obj1.tile_name)
-print(obj1.tile_ofRowIndex)
-print(obj1.tile_ofColumnIndex)
-print(obj1.occupiedBy)
-
+#input:
+move = Move(1,2)
+newboard.makeMove(move)
+print("move made")
 newboard.printBoard()

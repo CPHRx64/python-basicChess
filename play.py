@@ -1,28 +1,19 @@
-import pygame
 from board import *
+import ches
 
-
-
-pygame.init()
-gameDisplay = pygame.display.set_mode((400,400))
-pygame.display.set_caption("Chess")
-clock = pygame.time.Clock()
-
+# game loop
 chesssboard = Board()
 chesssboard.createBoard()
-
 
 gameEnds = False
 
 while not gameEnds:
 
-    for event in pygame.event.get():
+    userInput = input()
+    move = chess.Move.from_uci(userInput)
+    print(userInput)
 
-        if event.type == pygame.QUIT:
-            quitGame()
 
-    pygame.display.update()
-    clock.init(60)
 
 
 
